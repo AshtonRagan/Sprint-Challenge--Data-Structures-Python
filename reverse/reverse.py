@@ -12,6 +12,7 @@ class Node:
     def set_next(self, new_next):
         self.next_node = new_next
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -39,4 +40,32 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        if node != None:
+            current = node.next_node
+            node.next_node = prev
+            self.reverse_list(current, node)
+        else:
+            self.head = prev
+
+    def length(self):
+        cur = self.head
+        total = 0
+        while cur != None:
+            total += 1
+            cur = cur.next_node
+        return print(f"Total in list: {total}")
+
+    def printList(self):
+        cur = self.head
+        if cur == None:
+            return print("No items in list")
+        else:
+            while cur != None:
+                if cur.next_node == None:
+                    print(f"{cur.value} -> None")
+                    print(f"Head: {self.head.value}, Tail: {cur.next_node}")
+                    return
+
+                print(f"{cur.value} -> {cur.next_node.value}")
+                cur = cur.next_node
+
